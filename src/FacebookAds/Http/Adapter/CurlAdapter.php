@@ -186,13 +186,13 @@ class CurlAdapter extends AbstractAdapter {
     $curl_errno = $this->getCurl()->errno();
     $curl_error = $curl_errno ? $this->getCurl()->error() : null;
 
-    $this->getCurl()->close();
-
     $response_parts = $this->extractResponseHeadersAndBody($raw_response);
 
     $response->setStatusCode($status_code);
     $this->parseHeaders($response->getHeaders(), $response_parts[0]);
     $response->setBody($response_parts[1]);
+
+    $this->getCurl()->close();
 
     if ($curl_errno) {
       throw new Exception($curl_error, $curl_errno);

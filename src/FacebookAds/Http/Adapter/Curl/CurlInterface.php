@@ -81,6 +81,11 @@ interface CurlInterface {
   public function reset();
 
   /**
+   * @return void
+   */
+  public function close();
+
+  /**
    * @param array $opts
    */
   public function setoptArray(array $opts);
