@@ -68,8 +68,8 @@ class CurlAdapter extends AbstractAdapter {
   public function getOpts() {
     if ($this->opts === null) {
       $this->opts = new \ArrayObject(array(
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT => 60,
+        CURLOPT_CONNECTTIMEOUT => 5,
+        CURLOPT_TIMEOUT => 30,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HEADER => true,
         CURLOPT_CAINFO => $this->getCaBundlePath(),
@@ -185,6 +185,8 @@ class CurlAdapter extends AbstractAdapter {
     $status_code = $this->getCurl()->getInfo(CURLINFO_HTTP_CODE);
     $curl_errno = $this->getCurl()->errno();
     $curl_error = $curl_errno ? $this->getCurl()->error() : null;
+
+    $this->getCurl()->close();
 
     $response_parts = $this->extractResponseHeadersAndBody($raw_response);
 

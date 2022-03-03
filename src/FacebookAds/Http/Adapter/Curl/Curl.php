@@ -84,6 +84,13 @@ class Curl extends AbstractCurl {
   }
 
   /**
+   * @return void
+   */
+  public function close() {
+      $this->handle && curl_close($this->handle);
+  }
+
+  /**
    * @param int $errornum
    * @return NULL|string
    */

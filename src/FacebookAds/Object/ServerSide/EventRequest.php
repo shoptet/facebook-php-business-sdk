@@ -257,8 +257,8 @@ class EventRequest implements ArrayAccess {
     );
 
     $curl_options = array(
-      CURLOPT_CONNECTTIMEOUT => 10,
-      CURLOPT_TIMEOUT => 60,
+      CURLOPT_CONNECTTIMEOUT => 5,
+      CURLOPT_TIMEOUT => 30,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_HEADER => true,
       CURLOPT_CAINFO => Util::getCaBundlePath(),
